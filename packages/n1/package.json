@@ -1,5 +1,5 @@
 {
-  "name": "@acme/utils",
+  "name": "@pixpilot/n1",
   "version": "0.0.0",
   "keywords": [],
   "license": "MIT",
@@ -34,7 +34,6 @@
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/rollup-config": "workspace:*",
-    "@acme/semantic-release": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@acme/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",

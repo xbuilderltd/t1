@@ -111,7 +111,7 @@ importers:
         specifier: catalog:dev
         version: 3.2.4(@types/node@24.1.0)(@vitest/ui@3.2.4)(jiti@2.4.2)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.0)
 
-  packages/utils:
+  packages/a1:
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
@@ -125,6 +125,63 @@ importers:
       '@acme/semantic-release':
         specifier: workspace:*
         version: link:../../tooling/semantic-release
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@acme/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest
+      '@pixpilot/dev-config':
+        specifier: catalog:dev
+        version: 1.6.2(@typescript-eslint/parser@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint-config-prettier@10.1.8(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(prettier@3.6.2)(typescript-eslint@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.16.5
+      rollup:
+        specifier: catalog:dev
+        version: 4.45.1
+
+  packages/a2:
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/rollup-config':
+        specifier: workspace:*
+        version: link:../../tooling/rollup
+      '@acme/semantic-release':
+        specifier: workspace:*
+        version: link:../../tooling/semantic-release
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@acme/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest
+      '@pixpilot/dev-config':
+        specifier: catalog:dev
+        version: 1.6.2(@typescript-eslint/parser@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint-config-prettier@10.1.8(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(prettier@3.6.2)(typescript-eslint@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.16.5
+      rollup:
+        specifier: catalog:dev
+        version: 4.45.1
+
+  packages/n1:
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/rollup-config':
+        specifier: workspace:*
+        version: link:../../tooling/rollup
       '@acme/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
