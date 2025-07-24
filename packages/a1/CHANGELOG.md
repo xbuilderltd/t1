@@ -1,3 +1,10 @@
+# [@pixpilot/a1-v1.1.0](https://github.com/pixpilot/t1/compare/@pixpilot/a1-v1.0.0...@pixpilot/a1-v1.1.0) (2025-07-24)
+
+
+### Features
+
+* add publishConfig for public access in package.json and templates ([277b35f](https://github.com/pixpilot/t1/commit/277b35f9dbc40815acdb71ca8afbca6a2edd4bb7))
+
 # @pixpilot/a1-v1.0.0 (2025-07-24)
 
 
