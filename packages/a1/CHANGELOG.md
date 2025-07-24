@@ -1,3 +1,10 @@
+# [@pixpilot/a1-v1.2.0](https://github.com/pixpilot/t1/compare/@pixpilot/a1-v1.1.0...@pixpilot/a1-v1.2.0) (2025-07-24)
+
+
+### Features
+
+* add description export to index.ts and mark package.json as private ([f46d346](https://github.com/pixpilot/t1/commit/f46d3462ae4a87dfdd3ce749f0ac5129e1cf2de1))
+
 # [@pixpilot/a1-v1.1.0](https://github.com/pixpilot/t1/compare/@pixpilot/a1-v1.0.0...@pixpilot/a1-v1.1.0) (2025-07-24)
 
 
