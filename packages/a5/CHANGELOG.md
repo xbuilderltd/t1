@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.5](https://github.com/pixpilot/t1/compare/a5@v2.1.4...a5@v2.1.5) (2025-07-31)
+
+
+### Bug Fixes
+
+* simplify release workflow by removing bot check ([809e216](https://github.com/pixpilot/t1/commit/809e2161594bc2591b193ca9f354b9848696b23d))
+
 ## [2.1.4](https://github.com/pixpilot/t1/compare/a5@v2.1.3...a5@v2.1.4) (2025-07-31)
 
 
