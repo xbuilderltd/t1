@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/pixpilot/t1/compare/a5@v2.1.0...a5@v2.1.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a5, a6:** correct version numbers in index.ts files ([ca6ad5a](https://github.com/pixpilot/t1/commit/ca6ad5af7bb465f80bf35d7372ec5bccf9151864))
+* **a5:** correct version number from '42' to '4w2' ([7c66d90](https://github.com/pixpilot/t1/commit/7c66d9092f7c54fc3aac3b26118d228b21bc456c))
+
 ## [2.1.0](https://github.com/pixpilot/t1/compare/a5-v2.0.0...a5@v2.1.0) (2025-07-31)
 
 
