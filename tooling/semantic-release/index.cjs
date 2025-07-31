@@ -1,8 +1,6 @@
 module.exports = {
   branches: [
-    // Production branch for stable releases (e.g., 1.5.0)
     'main',
-    // Pre-release branch for release candidates (e.g., 1.6.0-rc.1)
     {
       name: 'next',
       prerelease: 'rc',
