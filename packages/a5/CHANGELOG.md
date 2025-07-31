@@ -1,3 +1,10 @@
+# @pixpilot/a5-v1.0.0 (2025-07-31)
+
+
+### Features
+
+* **a1, a5:** remove deprecated files and migrate package structure ([25d252f](https://github.com/pixpilot/t1/commit/25d252fab72bca8a6cd2fc39e07f158ebc9239fa))
+
 # [@pixpilot/a1-v1.2.0](https://github.com/pixpilot/t1/compare/@pixpilot/a1-v1.1.0...@pixpilot/a1-v1.2.0) (2025-07-24)
 
 
