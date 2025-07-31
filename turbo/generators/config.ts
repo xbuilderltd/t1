@@ -190,22 +190,6 @@ module.exports = function generator(plop: any) {
               }
             }
           }
-          // Add @acme/semantic-release to devDependencies if isNpmPackage is true
-          if (answers.isNpmPackage === true) {
-            if (!pkg.devDependencies) pkg.devDependencies = {};
-            pkg.devDependencies['@acme/semantic-release'] = 'workspace:*';
-          }
-          // Sort dependencies and devDependencies alphabetically
-          if (pkg.dependencies) {
-            pkg.dependencies = Object.fromEntries(
-              Object.entries(pkg.dependencies).sort(([a], [b]) => a.localeCompare(b)),
-            );
-          }
-          if (pkg.devDependencies) {
-            pkg.devDependencies = Object.fromEntries(
-              Object.entries(pkg.devDependencies).sort(([a], [b]) => a.localeCompare(b)),
-            );
-          }
           return JSON.stringify(pkg, null, 2);
         },
       } as any);
