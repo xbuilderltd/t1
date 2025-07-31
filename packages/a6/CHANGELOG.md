@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.3](https://github.com/pixpilot/t1/compare/a6@v2.1.2...a6@v2.1.3) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a6:** correct version number from '3sswaw' to '3ssswaw' ([4d5fabf](https://github.com/pixpilot/t1/commit/4d5fabf6cf117e89aaea6bf9808b94081efae82a))
+* **release:** add auto-merge step for release PRs ([e07ef1f](https://github.com/pixpilot/t1/commit/e07ef1f0f4ce52451fcc6042ba0d9230fb971e26))
+
 ## [2.1.2](https://github.com/pixpilot/t1/compare/a6@v2.1.1...a6@v2.1.2) (2025-07-31)
 
 
