@@ -34,6 +34,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # - name: Auto-approve release PR
+      #   if: ${{ steps.release.outputs.prs_created }}
+      #   run: |
+      #     pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
+      #     gh pr review $pr_number --approve
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
         run: pnpm publish -r --access public --no-git-checks
