@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.16](https://github.com/pixpilot/t1/compare/a6@v2.1.15...a6@v2.1.16) (2025-07-31)
+
+
+### Bug Fixes
+
+* update release workflow to check for bot triggers ([713b8c1](https://github.com/pixpilot/t1/commit/713b8c13883345eeaa9609e80dca84e3e5edca2e))
+
 ## [2.1.15](https://github.com/pixpilot/t1/compare/a6@v2.1.14...a6@v2.1.15) (2025-07-31)
 
 
