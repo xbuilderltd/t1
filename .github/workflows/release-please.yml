@@ -8,18 +8,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - name: Setup project
+        uses: ./.github/actions/setup-project
         with:
-          version: 8
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build packages
-        run: pnpm turbo build
+          registry-url: 'https://registry.npmjs.org'
       - name: Release Please
         uses: google-github-actions/release-please-action@v4
         id: release
