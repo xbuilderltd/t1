@@ -18,9 +18,7 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@semantic-release/exec": "^7.1.0",
     "@types/node": "catalog:dev",
-    "add": "^2.0.6",
     "rollup": "catalog:dev",
     "typescript": "catalog:dev"
   },
