@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build packages
+        run: pnpm turbo build
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - name: Publish to NPM
+        if: ${{ steps.release.outputs.releases_created }}
+        run: pnpm publish -r --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
