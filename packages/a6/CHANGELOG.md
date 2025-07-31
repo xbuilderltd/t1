@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.2](https://github.com/pixpilot/t1/compare/a6@v2.1.1...a6@v2.1.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a6:** update version number to '3ssw' ([47ae856](https://github.com/pixpilot/t1/commit/47ae856e6987880923491d07340a4467fb6a0ae7))
+* **release-please:** correct action reference to googleapis/release-please-action@v4 ([953043c](https://github.com/pixpilot/t1/commit/953043cace4c248a489876410ca36dad392cad8a))
+
 ## [2.1.1](https://github.com/pixpilot/t1/compare/a6@v2.1.0...a6@v2.1.1) (2025-07-31)
 
 
