@@ -1,3 +1,10 @@
+# @pixpilot/a6-v1.0.0 (2025-07-31)
+
+
+### Features
+
+* **a6:** add initial package structure and configuration ([c43cc25](https://github.com/pixpilot/t1/commit/c43cc258e9bd30825baf6979e1d22ee2e1d45828))
+
 # @pixpilot/a5-v1.0.0 (2025-07-31)
 
 
