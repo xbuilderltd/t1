@@ -1,5 +1,5 @@
-import config from '@internal/semantic-release';
+const config = require('@internal/semantic-release');
 
-export default {
+module.exports = {
   ...config,
 };
