@@ -39,13 +39,13 @@ jobs:
           manifest-file: .release-please-manifest.json
           token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Auto-merge release PR
-        if: ${{ steps.release.outputs.prs_created }}
-        run: |
-          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr merge $pr_number --squash --admin
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      # - name: Auto-merge release PR
+      #   if: ${{ steps.release.outputs.prs_created }}
+      #   run: |
+      #     pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
+      #     gh pr merge $pr_number --squash --admin
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
