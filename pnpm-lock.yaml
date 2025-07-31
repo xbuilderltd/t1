@@ -148,6 +148,10 @@ importers:
         version: 4.45.1
 
   packages/a6:
+    dependencies:
+      '@pixpilot/a5':
+        specifier: workspace:*
+        version: link:../a5
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
