@@ -1,3 +1,10 @@
+# [@pixpilot/a6-v1.1.1](https://github.com/pixpilot/t1/compare/@pixpilot/a6-v1.1.0...@pixpilot/a6-v1.1.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* update version to 1.0.6 ([69ef6b8](https://github.com/pixpilot/t1/commit/69ef6b8179179821b800dc72e87720ee81b7b94d))
+
 # [@pixpilot/a6-v1.1.0](https://github.com/pixpilot/t1/compare/@pixpilot/a6-v1.0.0...@pixpilot/a6-v1.1.0) (2025-07-31)
 
 
