@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/pixpilot/t1/compare/a5@v2.1.1...a5@v2.1.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a5:** correct version string in index.ts ([f57a495](https://github.com/pixpilot/t1/commit/f57a495fbca2ffc5127fd1d57b2b4a5f5277dae7))
+
 ## [2.1.1](https://github.com/pixpilot/t1/compare/a5@v2.1.0...a5@v2.1.1) (2025-07-31)
 
 
