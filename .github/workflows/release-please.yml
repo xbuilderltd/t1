@@ -14,6 +14,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Generate GitHub App Token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.RELEASER_ID }}
+          private_key: ${{ secrets.RELEASER_PRIVATE_KEY }}
+
       - name: Setup project
         uses: ./.github/actions/setup-project
         with:
@@ -25,22 +32,16 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Auto-merge release PR
-        if: ${{ steps.release.outputs.prs_created }}
-        run: |
-          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr merge $pr_number --auto --squash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Auto-approve release PR
+      - name: Auto-approve and merge release PR
         if: ${{ steps.release.outputs.prs_created }}
         run: |
           pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
           gh pr review $pr_number --approve
+          gh pr merge $pr_number --squash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
