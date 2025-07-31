@@ -1,3 +1,10 @@
+# [@pixpilot/a5-v1.0.2](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.1...@pixpilot/a5-v1.0.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a5:** correct package name and update version ([fd55c99](https://github.com/pixpilot/t1/commit/fd55c9976a37b0aaf1b1de07fe5e64ae6006fb0c))
+
 # [@pixpilot/a5-v1.0.1](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.0...@pixpilot/a5-v1.0.1) (2025-07-31)
 
 
