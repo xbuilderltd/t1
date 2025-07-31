@@ -10,6 +10,7 @@ concurrency:
 
 jobs:
   release:
+    if: github.actor != 'ccpu'
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +26,6 @@ jobs:
           app_id: ${{ secrets.RELEASER_ID }}
           private_key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
-      # Move this BEFORE Release Please
       - name: Setup project
         uses: ./.github/actions/setup-project
         with:
