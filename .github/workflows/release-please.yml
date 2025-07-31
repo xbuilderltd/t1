@@ -26,6 +26,15 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
+      - name: Auto-merge release PR
+        if: ${{ steps.release.outputs.prs_created }}
+        run: |
+          for pr in $(echo '${{ steps.release.outputs.prs_created }}' | jq -r '.[] | .number'); do
+            gh pr merge $pr --auto --squash
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
         run: pnpm publish -r --access public --no-git-checks
