@@ -34,12 +34,11 @@ jobs:
           manifest-file: .release-please-manifest.json
           token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Auto-approve and merge release PR
+      - name: Auto-merge release PR
         if: ${{ steps.release.outputs.prs_created }}
         run: |
           pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr review $pr_number --approve
-          gh pr merge $pr_number --squash
+          gh pr merge $pr_number --squash --admin
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
