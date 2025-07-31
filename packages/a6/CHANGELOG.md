@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.4](https://github.com/pixpilot/t1/compare/a6@v2.1.3...a6@v2.1.4) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a6:** correct version number from '3ssswaw' to '3sssswaw' ([5d5dd97](https://github.com/pixpilot/t1/commit/5d5dd97ac6e6da21028a58884c6b66c568b0a9c7))
+
 ## [2.1.3](https://github.com/pixpilot/t1/compare/a6@v2.1.2...a6@v2.1.3) (2025-07-31)
 
 
