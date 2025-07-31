@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/pixpilot/t1/compare/a6@v2.1.0...a6@v2.1.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a6:** correct version number to '3ss' ([b2684e9](https://github.com/pixpilot/t1/commit/b2684e9869c3b9424939ab354b02de9c362ce4fa))
+* **a6:** update version number to 3 ([547eda7](https://github.com/pixpilot/t1/commit/547eda7ee2ea5a6bfe555a89ec848401111f9a89))
+
 ## [2.1.0](https://github.com/pixpilot/t1/compare/a6-v2.0.0...a6@v2.1.0) (2025-07-31)
 
 
