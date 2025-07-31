@@ -11,8 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup project
         uses: ./.github/actions/setup-project
-        with:
-          registry-url: 'https://registry.npmjs.org'
+
       - name: Release Please
         uses: google-github-actions/release-please-action@v4
         id: release
