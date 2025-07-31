@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.1.5](https://github.com/pixpilot/t1/compare/a6@v2.1.4...a6@v2.1.5) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a5, a6:** correct version numbers in index.ts files ([ca6ad5a](https://github.com/pixpilot/t1/commit/ca6ad5af7bb465f80bf35d7372ec5bccf9151864))
+* **a6:** correct version number formatting in index.ts ([25b3de9](https://github.com/pixpilot/t1/commit/25b3de99e12b674c1eeba3b2d8a8987e6473575d))
+* add GitHub Actions CI workflow for pnpm-based TypeScript project ([97eda6a](https://github.com/pixpilot/t1/commit/97eda6ac9c79ca8fd30331d95a07dfe74be62e4b))
+* update auto-merge step in release workflow ([4c28c47](https://github.com/pixpilot/t1/commit/4c28c477f78ef7627995ac83c2d33d5ea6dbc7b1))
+* update release workflow to use GitHub App Token ([e6d2f0b](https://github.com/pixpilot/t1/commit/e6d2f0bfce7cda10a0e43a047c3da3dd56ee2a3f))
+
 ## [2.1.4](https://github.com/pixpilot/t1/compare/a6@v2.1.3...a6@v2.1.4) (2025-07-31)
 
 
