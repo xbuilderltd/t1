@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   release:
-    if: github.actor != 'pixpilot-pacakge-releaser[bot]'
+    if: github.actor == 'pixpilot-pacakge-releaser[bot]'
     runs-on: ubuntu-latest
 
     steps:
