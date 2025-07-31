@@ -111,7 +111,7 @@ importers:
         specifier: catalog:dev
         version: 3.2.4(@types/node@24.1.0)(@vitest/ui@3.2.4)(jiti@2.4.2)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.0)
 
-  packages/a1:
+  packages/a5:
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:*
