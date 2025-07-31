@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.15](https://github.com/pixpilot/t1/compare/a6@v2.1.14...a6@v2.1.15) (2025-07-31)
+
+
+### Bug Fixes
+
+* **ci:** comment out condition for release job to allow all actors ([6bdb81f](https://github.com/pixpilot/t1/commit/6bdb81ffa59effe52e9d7af6e2eb0ae536994c80))
+
 ## [2.1.14](https://github.com/pixpilot/t1/compare/a6@v2.1.13...a6@v2.1.14) (2025-07-31)
 
 
