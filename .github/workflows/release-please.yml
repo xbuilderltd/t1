@@ -29,9 +29,8 @@ jobs:
       - name: Auto-merge release PR
         if: ${{ steps.release.outputs.prs_created }}
         run: |
-          for pr in $(echo '${{ steps.release.outputs.prs_created }}' | jq -r '.[] | .number'); do
-            gh pr merge $pr --auto --squash
-          done
+          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
+          gh pr merge $pr_number --auto --squash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
