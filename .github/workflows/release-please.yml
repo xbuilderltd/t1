@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
 
-# This prevents multiple release workflows from running simultaneously
 concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: false
@@ -26,6 +25,12 @@ jobs:
           app_id: ${{ secrets.RELEASER_ID }}
           private_key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
+      # Move this BEFORE Release Please
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Release Please
         uses: googleapis/release-please-action@v4
         id: release
@@ -34,7 +39,6 @@ jobs:
           manifest-file: .release-please-manifest.json
           token: ${{ steps.generate_token.outputs.token }}
 
-      # Only run merge/publish if there's actually something to do
       - name: Auto-merge release PR
         if: ${{ steps.release.outputs.prs_created }}
         run: |
@@ -48,8 +52,3 @@ jobs:
         run: pnpm publish -r --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Setup project
-        uses: ./.github/actions/setup-project
-        with:
-          registry-url: 'https://registry.npmjs.org'
