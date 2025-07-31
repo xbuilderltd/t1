@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.14](https://github.com/pixpilot/t1/compare/a6@v2.1.13...a6@v2.1.14) (2025-07-31)
+
+
+### Bug Fixes
+
+* **ci:** update condition for release job to exclude specific actor ([7c87ab1](https://github.com/pixpilot/t1/commit/7c87ab1acbb42d1e63c7c2fbf8cc3a2ecf5268f4))
+* update release workflow conditions ([460249d](https://github.com/pixpilot/t1/commit/460249d4008f718762c615f59d206ebc0572a24f))
+
 ## [2.1.13](https://github.com/pixpilot/t1/compare/a6@v2.1.12...a6@v2.1.13) (2025-07-31)
 
 
