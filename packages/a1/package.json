@@ -5,15 +5,19 @@
   "license": "MIT",
   "author": "pixpilot",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+  "exports": "./src/index.ts",
+  "publishConfig": {
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "./package.json": "./package.json"
+    },
+    "access": "public"
   },
   "files": [
     "dist"
@@ -41,8 +45,5 @@
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
   },
-  "packageManager": "pnpm@10.12.2",
-  "publishConfig": {
-    "access": "public"
-  }
+  "packageManager": "pnpm@10.12.2"
 }
