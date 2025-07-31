@@ -1,3 +1,10 @@
+# [@pixpilot/a6-v1.1.0](https://github.com/pixpilot/t1/compare/@pixpilot/a6-v1.0.0...@pixpilot/a6-v1.1.0) (2025-07-31)
+
+
+### Features
+
+* **a6:** add dependency on @pixpilot/a5 and update package.json ([109024f](https://github.com/pixpilot/t1/commit/109024f54e950ac7a32f26e43e7944ebfdfb0002))
+
 # @pixpilot/a6-v1.0.0 (2025-07-31)
 
 
