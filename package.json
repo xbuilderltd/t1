@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
+    "@anolilab/semantic-release-pnpm": "^2.0.3",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@pixpilot/dev-config": "catalog:dev",

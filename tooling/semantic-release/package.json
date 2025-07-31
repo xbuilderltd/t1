@@ -22,5 +22,9 @@
     "rollup": "catalog:dev",
     "typescript": "catalog:dev"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@acme/prettier-config",
+  "dependencies": {
+    "@anolilab/semantic-release-pnpm": "^2.0.3",
+    "add": "^2.0.6"
+  }
 }
