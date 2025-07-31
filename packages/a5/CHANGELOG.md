@@ -1,3 +1,10 @@
+# [@pixpilot/a5-v1.0.6](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.5...@pixpilot/a5-v1.0.6) (2025-07-31)
+
+
+### Bug Fixes
+
+* update version from '1' to '2' ([142b8a4](https://github.com/pixpilot/t1/commit/142b8a4f4613d5197a80f1b24d97a3f4e93e666c))
+
 # [@pixpilot/a5-v1.0.5](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.4...@pixpilot/a5-v1.0.5) (2025-07-31)
 
 
