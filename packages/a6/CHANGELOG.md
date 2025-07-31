@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.12](https://github.com/pixpilot/t1/compare/a6@v2.1.11...a6@v2.1.12) (2025-07-31)
+
+
+### Bug Fixes
+
+* **a6:** correct version string formatting in index.ts ([f42f4b6](https://github.com/pixpilot/t1/commit/f42f4b623ba72cfbb846ccd92256226ec527094c))
+
 ## [2.1.11](https://github.com/pixpilot/t1/compare/a6@v2.1.10...a6@v2.1.11) (2025-07-31)
 
 
