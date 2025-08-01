@@ -43,7 +43,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          pnpm exec nx release --skip-publish
+          # Check for Nx release tags for all projects
+          missing_tag=false
+          for pkg in packages/*/package.json; do
+            name=$(jq -r .name "$pkg")
+            if ! git tag | grep -q "${name}@"; then
+              missing_tag=true
+              break
+            fi
+          done
+          if [ "$missing_tag" = true ]; then
+            pnpm exec nx release --skip-publish --first-release
+          else
+            pnpm exec nx release --skip-publish
+          fi
 
       - name: Publish packages
         env:
