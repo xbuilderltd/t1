@@ -3,16 +3,16 @@
   "include-v-in-tag": true,
   "tag-separator": "@",
   "separate-pull-requests": true,
+  "group-pull-request-title-pattern": "chore: release ${component}",
+  "plugins": ["node-workspace"],
   "packages": {
     "packages/a5": {
       "path": "packages/a5",
-      "release-type": "node",
-      "updateInternalDependencies": true
+      "release-type": "node"
     },
     "packages/a6": {
       "path": "packages/a6",
-      "release-type": "node",
-      "updateInternalDependencies": true
+      "release-type": "node"
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
