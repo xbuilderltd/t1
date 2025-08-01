@@ -55,7 +55,7 @@ jobs:
       - name: Auto-merge release PR
         if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.prs_created
         run: |
-          prs=$(echo '${{ steps.release.outputs.prs }}' | jq -c '.[]')
+          prs=$(printf '%s' "${{ steps.release.outputs.prs }}" | jq -c '.[]')
           for pr in $prs; do
             pr_number=$(echo "$pr" | jq -r '.number')
             gh pr merge $pr_number --squash --admin
