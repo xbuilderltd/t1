@@ -51,7 +51,7 @@ jobs:
         shell: bash
 
       - name: Release packages (version and publish)
-        run: npx nx release --verbose
+        run: npx nx release --first-release --verbose
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
