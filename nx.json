@@ -22,29 +22,19 @@
     },
     "clean": {
       "cache": false
-    },
-    "nx-release-publish": {
-      "executor": "@nx/js:release-publish",
-      "dependsOn": ["build"],
-      "options": {
-        "packageRoot": "{projectRoot}",
-        "buildTarget": "build"
-      }
     }
   },
+  "generatorOptions": {
+    "currentVersionResolver": "git-tag"
+  },
   "release": {
-    "projectsRelationship": "independent",
+    "releaseTagPattern": "{version}",
+    "projectsRelationship": "fixed",
     "projects": ["packages/*"],
-    "version": {
-      "conventionalCommits": true
-    },
-    "git": {
-      "commitMessage": "chore: updated version [no ci]"
-    },
     "changelog": {
-      "projectChangelogs": {
-        "file": false,
-        "createRelease": "github"
+      "workspaceChangelog": {
+        "createRelease": "github",
+        "file": false
       }
     }
   }

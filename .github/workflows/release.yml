@@ -43,14 +43,9 @@ jobs:
         run: npx nx report
         shell: bash
 
-      # Explicitly build all packages before publishing
-      - name: Build projects
-        run: pnpm exec nx run-many -t build
-        shell: bash
-
       - name: Publish packages
-        run: pnpm exec node scripts/custom-publish.js
+        run: npx nx release publish
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          # NPM_CONFIG_PROVENANCE: true
