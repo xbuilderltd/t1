@@ -123,7 +123,7 @@ importers:
 
   packages/a6:
     dependencies:
-      '@pixpilot/n1':
+      '@pixpilot/nx1':
         specifier: workspace:*
         version: link:../a5
     devDependencies:
