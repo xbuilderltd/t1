@@ -32,10 +32,10 @@ jobs:
       - name: Generate GitHub App Token
         if: steps.bot_check.outputs.is_bot != 'true'
         id: generate_token
-        uses: tibdex/github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
-          app_id: ${{ secrets.RELEASER_ID }}
-          private_key: ${{ secrets.RELEASER_PRIVATE_KEY }}
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
       - name: Setup project
         if: steps.bot_check.outputs.is_bot != 'true'
