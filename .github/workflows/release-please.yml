@@ -60,6 +60,53 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
+      - name: Check for existing release PRs to auto-merge
+        if: steps.bot_check.outputs.is_bot != 'true'
+        run: |
+          echo "Checking for existing release PRs from release-please..."
+
+          # Get all open PRs created by the release bot
+          prs=$(gh pr list --author "pixpilot-pacakge-releaser[bot]" --state open --json number,title,headRefName)
+
+          if [[ "$prs" != "[]" ]]; then
+            echo "Found existing release PRs:"
+            echo "$prs" | jq -r '.[] | "PR #\(.number): \(.title)"'
+
+            # Auto-merge each release PR
+            echo "$prs" | jq -r '.[].number' | while read pr_number; do
+              echo "Auto-merging PR #$pr_number..."
+              gh pr merge "$pr_number" --squash --admin || echo "Failed to merge PR #$pr_number (may already be merged or have conflicts)"
+            done
+          else
+            echo "No existing release PRs found to merge"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Wait and check for dependency update PRs
+        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.releases_created
+        run: |
+          echo "Waiting 30 seconds for potential dependency update PRs..."
+          sleep 30
+
+          echo "Checking for new release PRs created after releases..."
+          prs=$(gh pr list --author "pixpilot-pacakge-releaser[bot]" --state open --json number,title,headRefName)
+
+          if [[ "$prs" != "[]" ]]; then
+            echo "Found new dependency update PRs:"
+            echo "$prs" | jq -r '.[] | "PR #\(.number): \(.title)"'
+
+            # Auto-merge each new release PR
+            echo "$prs" | jq -r '.[].number' | while read pr_number; do
+              echo "Auto-merging dependency update PR #$pr_number..."
+              gh pr merge "$pr_number" --squash --admin || echo "Failed to merge PR #$pr_number"
+            done
+          else
+            echo "No new dependency update PRs found"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
       - name: Publish to NPM
         if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.releases_created
         run: pnpm publish -r --access public --no-git-checks
