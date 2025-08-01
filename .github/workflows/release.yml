@@ -50,15 +50,8 @@ jobs:
           ls -la packages/*/dist/ || echo "No dist contents found"
         shell: bash
 
-      - name: Publish packages (dry run)
-        run: npx nx release publish --dry-run --verbose
-        shell: bash
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
-
-      - name: Publish packages
-        run: npx nx release publish --verbose
+      - name: Release packages (version and publish)
+        run: npx nx release --verbose
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
