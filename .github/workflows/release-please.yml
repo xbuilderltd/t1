@@ -55,8 +55,11 @@ jobs:
       - name: Auto-merge release PR
         if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.prs_created
         run: |
-          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr merge $pr_number --squash --admin
+          prs=$(echo '${{ steps.release.outputs.prs }}' | jq -c '.[]')
+          for pr in $prs; do
+            pr_number=$(echo "$pr" | jq -r '.number')
+            gh pr merge $pr_number --squash --admin
+          done
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
