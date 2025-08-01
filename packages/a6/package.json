@@ -45,6 +45,7 @@
     "@acme/tsconfig": "workspace:*",
     "@acme/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
+    "@rimac-technology/semantic-release-monorepo": "^1.2.10",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
   },

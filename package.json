@@ -26,7 +26,7 @@
     "clean:workspaces": "turbo run clean",
     "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
     "turbo:gen:init": "pnpm turbo gen init",
-    "release": "pnpm -r --workspace-concurrency=1 exec -- semantic-release -e semantic-release-monorepo"
+    "release": "pnpm -r --workspace-concurrency=1 exec -- semantic-release-monorepo"
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
@@ -34,6 +34,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@pixpilot/dev-config": "catalog:dev",
+    "@rimac-technology/semantic-release-monorepo": "^1.2.10",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

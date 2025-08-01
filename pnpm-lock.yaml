@@ -53,6 +53,9 @@ importers:
       '@pixpilot/dev-config':
         specifier: catalog:dev
         version: 1.6.2(@typescript-eslint/parser@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint-config-prettier@10.1.8(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(prettier@3.6.2)(typescript-eslint@8.38.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
+      '@rimac-technology/semantic-release-monorepo':
+        specifier: ^1.2.10
+        version: 1.2.10(semantic-release@24.2.7(typescript@5.8.3))(typescript@5.8.3)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.7(typescript@5.8.3))
@@ -1084,6 +1087,13 @@ packages:
 
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
+
+  '@rimac-technology/semantic-release-monorepo@1.2.10':
+    resolution: {integrity: sha512-nsfgHkg5lHzWmUrfamNxLdAiERiWIbVdQcvtVevFh3BEiqvPe07Jwocf8phL/FBPuIWgbcp4KdXrz34XTMP4JQ==}
+    engines: {node: '>=20'}
+    hasBin: true
+    peerDependencies:
+      semantic-release: '>=20'
 
   '@rollup/plugin-terser@0.4.4':
     resolution: {integrity: sha512-XHeJC5Bgvs8LfukDwWZp7yeqin6ns8RTl2B9avbejt6tZqsqvVoWI7ZTQrcNsfKEDWBTnTxM8nMDkO2IFFbd0A==}
@@ -3533,6 +3543,9 @@ packages:
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
+
+  memize@2.1.0:
+    resolution: {integrity: sha512-yywVJy8ctVlN5lNPxsep5urnZ6TTclwPEyigM9M3Bi8vseJBOfqNrGWN/r8NzuIt3PovM323W04blJfGQfQSVg==}
 
   meow@12.1.1:
     resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
@@ -6027,6 +6040,17 @@ snapshots:
       config-chain: 1.1.13
 
   '@polka/url@1.0.0-next.29': {}
+
+  '@rimac-technology/semantic-release-monorepo@1.2.10(semantic-release@24.2.7(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      cosmiconfig: 9.0.0(typescript@5.8.3)
+      memize: 2.1.0
+      meow: 13.2.0
+      read-pkg: 9.0.1
+      semantic-release: 24.2.7(typescript@5.8.3)
+      signale: 1.4.0
+    transitivePeerDependencies:
+      - typescript
 
   '@rollup/plugin-terser@0.4.4(rollup@4.45.1)':
     dependencies:
@@ -9078,6 +9102,8 @@ snapshots:
   marked@15.0.12: {}
 
   math-intrinsics@1.1.0: {}
+
+  memize@2.1.0: {}
 
   meow@12.1.1: {}
 
