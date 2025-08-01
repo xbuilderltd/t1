@@ -39,10 +39,6 @@ jobs:
       - name: Build projects
         run: pnpm exec nx run-many -t build
 
-      - name: Capture tags before release
-        id: tags_before
-        run: echo "TAGS=$(git tag -l | grep -E '@pixpilot/(n1|n2)@' | tr '\n' ' ')" >> $GITHUB_ENV
-
       - name: Release with Nx
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
@@ -57,12 +53,7 @@ jobs:
             pnpm exec nx release --skip-publish
           fi
 
-      - name: Capture tags after release
-        id: tags_after
-        run: echo "TAGS_AFTER=$(git tag -l | grep -E '@pixpilot/(n1|n2)@' | tr '\n' ' ')" >> $GITHUB_ENV
-
-      - name: Check for new tags and publish packages
-        if: env.TAGS != env.TAGS_AFTER
+      - name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN  }}
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
