@@ -1,4 +1,4 @@
-import * as a5 from '@pixpilot/n1';
+import * as a5 from '@pixpilot/nx1';
 
 export { a5 };
 
