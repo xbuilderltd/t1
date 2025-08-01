@@ -1,3 +1,10 @@
+# [@pixpilot/a5-v1.0.1](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.0...@pixpilot/a5-v1.0.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **package:** update version to 3.0.0 ([e28bff4](https://github.com/pixpilot/t1/commit/e28bff430a609bd8ccd6520ead0066786fe70f9c))
+
 # @pixpilot/a5-v1.0.0 (2025-08-01)
 
 
