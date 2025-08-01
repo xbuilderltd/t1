@@ -24,7 +24,8 @@
     "clean:packages": "node scripts/cleanup-node-modules.js",
     "clean:packages:install": "pnpm clean:packages && pnpm install",
     "clean:workspaces": "nx run-many -t clean",
-    "clean:workspaces:install": "pnpm clean:workspaces && pnpm install"
+    "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
+    "publish:local": "node scripts/custom-publish.js"
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
