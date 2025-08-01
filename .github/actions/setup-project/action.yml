@@ -32,10 +32,6 @@ runs:
       run: pnpm install
       shell: bash
 
-    - name: Install Turbo CLI
-      run: pnpm add -g turbo
-      shell: bash
-
     - name: Build package
       run: pnpm run build
       shell: bash

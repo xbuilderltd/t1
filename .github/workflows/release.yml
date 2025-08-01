@@ -36,43 +36,16 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Build projects
-        run: pnpm exec nx run-many -t build
+      # - name: Build projects
+      #   run: pnpm exec nx run-many -t build
 
-      - name: Release with Nx
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-          # Check for Nx release tags for all projects
-          missing_tag=false
-          for pkg in packages/*/package.json; do
-            name=$(jq -r .name "$pkg")
-            if ! git tag | grep -q "${name}@"; then
-              missing_tag=true
-              break
-            fi
-          done
-          if [ "$missing_tag" = true ]; then
-            pnpm exec nx release --skip-publish --first-release
-          else
-            pnpm exec nx release --skip-publish
-          fi
+      - name: Print Environment Info
+        run: npx nx report
+        shell: bash
 
       - name: Publish packages
+        run: npx nx release publish
+        shell: bash
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN  }}
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-          # Set provenance only for public repos
-          if [ "${{ github.event.repository.private }}" = "false" ]; then
-            export NPM_CONFIG_PROVENANCE=true
-          fi
-          # Publish each package individually with pnpm
-          for package_dir in packages/*/; do
-            if [ -f "${package_dir}package.json" ]; then
-              echo "Publishing package in ${package_dir}"
-              cd "${package_dir}"
-              pnpm publish --no-git-checks --access public
-              cd - > /dev/null
-            fi
-          done
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
