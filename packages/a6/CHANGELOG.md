@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.17](https://github.com/pixpilot/t1/compare/a6@v2.1.16...a6@v2.1.17) (2025-08-01)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @pixpilot/a5 bumped to 2.1.10
+
 ## [2.1.16](https://github.com/pixpilot/t1/compare/a6@v2.1.15...a6@v2.1.16) (2025-07-31)
 
 
