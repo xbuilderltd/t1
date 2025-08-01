@@ -1,3 +1,10 @@
+# [@pixpilot/a7-v1.0.1](https://github.com/pixpilot/t1/compare/@pixpilot/a7-v1.0.0...@pixpilot/a7-v1.0.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **index:** correct version string from '3d' to '3dw' ([08108a5](https://github.com/pixpilot/t1/commit/08108a508cd92cdcb7e0cad17bd1e8fb32140205))
+
 # @pixpilot/a7-v1.0.0 (2025-08-01)
 
 
