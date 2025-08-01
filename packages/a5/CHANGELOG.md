@@ -1,3 +1,11 @@
+# [@pixpilot/a5-v1.0.7](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.6...@pixpilot/a5-v1.0.7) (2025-08-01)
+
+
+### Bug Fixes
+
+* **a5, a6:** update version strings to '3d' and '1s' ([6ac8b46](https://github.com/pixpilot/t1/commit/6ac8b4656b46d5abc632dd76fc069af76dc27b0b))
+* update version from '2' to '3' ([1ae84e6](https://github.com/pixpilot/t1/commit/1ae84e6aa34ab55b8228a60f254d51d0db53fb22))
+
 # [@pixpilot/a5-v1.0.6](https://github.com/pixpilot/t1/compare/@pixpilot/a5-v1.0.5...@pixpilot/a5-v1.0.6) (2025-07-31)
 
 
