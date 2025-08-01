@@ -5,17 +5,27 @@ on:
     branches:
       - main
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate GitHub App token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ steps.generate_token.outputs.token }}
+
+      - name: Configure Git user
+        run: |
+          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
+          git config --global user.email "${{ steps.generate_token.outputs.user-id }}+${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
 
       - name: Setup project
         uses: ./.github/actions/setup-project
@@ -27,7 +37,7 @@ jobs:
 
       - name: Release with Nx
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           # Check if this is a first release by looking for existing tags
           EXISTING_TAGS=$(git tag -l | grep -E "@pixpilot/(n1|n2)@" || true)
@@ -41,6 +51,7 @@ jobs:
 
       - name: Publish packages
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN  }}
           NPM_CONFIG_PROVENANCE: true
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: pnpm exec nx release publish
