@@ -25,7 +25,35 @@ jobs:
       - name: Auto-merge release PR
         run: |
           echo "Auto-merging release PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
-          gh pr merge ${{ github.event.pull_request.number }} --squash --admin
+          
+          # Try to merge with retries and auto-update
+          for attempt in 1 2 3 4 5; do
+            echo "Merge attempt $attempt..."
+            
+            if gh pr merge ${{ github.event.pull_request.number }} --squash --admin; then
+              echo "✅ Successfully merged PR on attempt $attempt"
+              exit 0
+            else
+              echo "❌ Merge attempt $attempt failed"
+              
+              if [ $attempt -lt 5 ]; then
+                echo "Waiting 10 seconds before retry..."
+                sleep 10
+                
+                # Try to update the PR branch to sync with main
+                echo "Attempting to update PR branch..."
+                gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/update-branch \
+                  --method PUT \
+                  --field expected_head_sha="${{ github.event.pull_request.head.sha }}" || echo "Update branch failed, continuing..."
+                
+                sleep 5
+              fi
+            fi
+          done
+          
+          echo "❌ Failed to merge PR after 5 attempts"
+          echo "PR may need manual intervention due to conflicts or branch protection rules"
+          exit 1
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
