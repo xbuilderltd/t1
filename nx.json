@@ -24,9 +24,11 @@
       "cache": false
     },
     "nx-release-publish": {
+      "executor": "@nx/js:release-publish",
       "dependsOn": ["build"],
       "options": {
-        "packageRoot": "{projectRoot}"
+        "packageRoot": "{projectRoot}",
+        "buildTarget": "build"
       }
     }
   },

@@ -54,4 +54,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN  }}
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: pnpm exec nx release publish
+        run: |
+          # Publish each package individually with pnpm
+          for package_dir in packages/*/; do
+            if [ -f "${package_dir}package.json" ]; then
+              echo "Publishing package in ${package_dir}"
+              cd "${package_dir}"
+              pnpm publish --no-git-checks --access public
+              cd - > /dev/null
+            fi
+          done
