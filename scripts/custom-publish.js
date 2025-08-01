@@ -4,10 +4,10 @@
 const { execSync } = require('child_process');
 
 try {
-  const output = execSync('pnpm publish', { stdio: 'pipe' }).toString();
+  const output = execSync('pnpm publish -r --no-git-checks --access public', { stdio: 'pipe' }).toString();
   // Output as JSON for Nx compatibility
   console.log(JSON.stringify({ success: true, output }));
 } catch (err) {
-  console.log(JSON.stringify({ success: false, error: err.message }));
+  console.log(JSON.stringify({ success: false, error: err.message, stderr: err.stderr?.toString(), stdout: err.stdout?.toString() }));
   process.exit(1);
 }
