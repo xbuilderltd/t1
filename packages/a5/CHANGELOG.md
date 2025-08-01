@@ -5,6 +5,17 @@
 
 ### Bug Fixes
 
+* **a5:** correct version string in index.ts ([35c696f](https://github.com/pixpilot/t1/commit/35c696f7c9f6baf7c9c6bb28c0160dea2467cfc4))
+* **a5:** correct version string in index.ts ([19c4147](https://github.com/pixpilot/t1/commit/19c4147d86caeac355f146b740d8a8e434c9e88f))
+* **a5:** correct version string in index.ts ([c485d08](https://github.com/pixpilot/t1/commit/c485d08f29786c013825ddb657831d008d54b601))
+* **a5:** correct version string in index.ts and update release-please config ([bdb89d6](https://github.com/pixpilot/t1/commit/bdb89d6efb698794eaf0dac8d11706d748fbe764))
+* **release-please:** enhance workflow to check for bot triggers and manage releases ([b4e8904](https://github.com/pixpilot/t1/commit/b4e89048e89cefa9d78d0cde83a9bab63ecf76cc))
+
+## [2.1.10](https://github.com/pixpilot/t1/compare/a5@v2.1.9...a5@v2.1.10) (2025-08-01)
+
+
+### Bug Fixes
+
 * **a5:** correct version string in index.ts ([c485d08](https://github.com/pixpilot/t1/commit/c485d08f29786c013825ddb657831d008d54b601))
 * **a5:** correct version string in index.ts and update release-please config ([bdb89d6](https://github.com/pixpilot/t1/commit/bdb89d6efb698794eaf0dac8d11706d748fbe764))
 * **release-please:** enhance workflow to check for bot triggers and manage releases ([b4e8904](https://github.com/pixpilot/t1/commit/b4e89048e89cefa9d78d0cde83a9bab63ecf76cc))
