@@ -35,7 +35,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@pixpilot/n1": "workspace:*"
+    "@pixpilot/nx1": "workspace:*"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
