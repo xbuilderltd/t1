@@ -21,30 +21,21 @@ jobs:
         id: bot_check
         run: |
           if [[ "${{ github.actor }}" == "pixpilot-pacakge-releaser[bot]" ]] || [[ "${{ github.event.head_commit.message }}" == *"chore(main): release"* ]]; then
-            echo "Bot triggered this workflow - skipping release process"
+            echo "Bot triggered this workflow - proceeding with release"
             echo "is_bot=true" >> $GITHUB_OUTPUT
-            exit 0
           else
-            echo "User triggered workflow - proceeding with release"
+            echo "User triggered workflow - only creating release PRs"
             echo "is_bot=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Generate GitHub App Token
-        if: steps.bot_check.outputs.is_bot != 'true'
         id: generate_token
         uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ secrets.RELEASER_ID }}
           private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
-      - name: Setup project
-        if: steps.bot_check.outputs.is_bot != 'true'
-        uses: ./.github/actions/setup-project
-        with:
-          registry-url: 'https://registry.npmjs.org'
-
       - name: Release Please
-        if: steps.bot_check.outputs.is_bot != 'true'
         uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -52,71 +43,24 @@ jobs:
           manifest-file: .release-please-manifest.json
           token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Auto-merge release PR
-        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.prs_created
-        run: |
-          pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr merge $pr_number --squash --admin
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-
-      - name: Check for existing release PRs to auto-merge
-        if: steps.bot_check.outputs.is_bot != 'true'
-        run: |
-          echo "Checking for existing release PRs from release-please..."
-
-          # Get all open PRs created by the release bot
-          prs=$(gh pr list --author "pixpilot-pacakge-releaser[bot]" --state open --json number,title,headRefName)
-
-          if [[ "$prs" != "[]" ]]; then
-            echo "Found existing release PRs:"
-            echo "$prs" | jq -r '.[] | "PR #\(.number): \(.title)"'
-
-            # Auto-merge each release PR
-            echo "$prs" | jq -r '.[].number' | while read pr_number; do
-              echo "Auto-merging PR #$pr_number..."
-              gh pr merge "$pr_number" --squash --admin || echo "Failed to merge PR #$pr_number (may already be merged or have conflicts)"
-            done
-          else
-            echo "No existing release PRs found to merge"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-
-      - name: Wait and check for dependency update PRs
-        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.releases_created
-        run: |
-          echo "Waiting 30 seconds for potential dependency update PRs..."
-          sleep 30
-
-          echo "Checking for new release PRs created after releases..."
-          prs=$(gh pr list --author "pixpilot-pacakge-releaser[bot]" --state open --json number,title,headRefName)
-
-          if [[ "$prs" != "[]" ]]; then
-            echo "Found new dependency update PRs:"
-            echo "$prs" | jq -r '.[] | "PR #\(.number): \(.title)"'
-
-            # Auto-merge each new release PR
-            echo "$prs" | jq -r '.[].number' | while read pr_number; do
-              echo "Auto-merging dependency update PR #$pr_number..."
-              gh pr merge "$pr_number" --squash --admin || echo "Failed to merge PR #$pr_number"
-            done
-          else
-            echo "No new dependency update PRs found"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      - name: Setup project
+        if: steps.release.outputs.releases_created
+        uses: ./.github/actions/setup-project
+        with:
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to NPM
-        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.releases_created
+        if: steps.release.outputs.releases_created
         run: pnpm publish -r --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Workflow completed
         run: |
-          if [[ "${{ steps.bot_check.outputs.is_bot }}" == "true" ]]; then
-            echo "✅ Workflow completed - Skipped release process (triggered by release bot)"
+          if [[ "${{ steps.release.outputs.prs_created }}" == "true" ]]; then
+            echo "✅ Release PRs created - auto-merge workflow will handle merging"
+          elif [[ "${{ steps.release.outputs.releases_created }}" == "true" ]]; then
+            echo "✅ Packages released and published to NPM"
           else
-            echo "✅ Workflow completed - Release process executed"
+            echo "✅ No releases needed at this time"
           fi

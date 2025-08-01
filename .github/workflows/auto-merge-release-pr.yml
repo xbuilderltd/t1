@@ -1,0 +1,32 @@
+name: Auto-merge Release PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+jobs:
+  auto-merge:
+    # Only run for PRs created by the release bot
+    if: github.actor == 'pixpilot-pacakge-releaser[bot]' && startsWith(github.event.pull_request.title, 'chore')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate GitHub App Token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
+
+      - name: Auto-merge release PR
+        run: |
+          echo "Auto-merging release PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+          gh pr merge ${{ github.event.pull_request.number }} --squash --admin
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Confirm merge
+        run: |
+          echo "✅ Successfully merged release PR #${{ github.event.pull_request.number }}"
+          echo "This will trigger the release workflow to publish packages."
