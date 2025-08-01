@@ -1,5 +1,6 @@
 import path from 'path';
 
+import nodeResolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
@@ -37,6 +38,10 @@ const config = {
     },
   ],
   plugins: [
+    nodeResolve({
+      extensions: ['.js', '.ts'],
+      preferBuiltins: true,
+    }),
     typescript({
       tsconfig: './tsconfig.build.json',
       // Ensure declaration files also respect the directory structure.

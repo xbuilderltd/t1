@@ -1,6 +1,6 @@
 {
   "name": "@pixpilot/a6",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "keywords": [],
   "license": "MIT",
   "author": "pixpilot",
@@ -46,6 +46,7 @@
     "@acme/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
     "@types/node": "catalog:dev",
+    "rimraf": "^6.0.1",
     "rollup": "catalog:dev"
   },
   "packageManager": "pnpm@10.12.2"
