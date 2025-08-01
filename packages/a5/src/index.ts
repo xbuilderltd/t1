@@ -1,3 +1,3 @@
 export const name = 'a5';
 export const description = 'A1 hpackage for testing purposes';
-export const version = '4ws334dvsssswwsv2sss2s2ddss2';
+export const version = '4ws334dvssssswwsv2sss2s2ddss2';
