@@ -22,13 +22,27 @@
     },
     "clean": {
       "cache": false
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"],
+      "options": {
+        "packageRoot": "{projectRoot}/dist"
+      }
     }
   },
   "release": {
+    "projectsRelationship": "independent",
+    "projects": ["packages/*"],
+    "version": {
+      "conventionalCommits": true
+    },
+    "git": {
+      "commitMessage": "chore: updated version [no ci]"
+    },
     "changelog": {
-      "workspaceChangelog": {
-        "createRelease": "github",
-        "file": false
+      "projectChangelogs": {
+        "file": false,
+        "createRelease": "github"
       }
     }
   }
