@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
 
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -17,20 +13,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check if triggered by release bot
-        id: bot_check
-        run: |
-          if [[ "${{ github.actor }}" == "pixpilot-pacakge-releaser[bot]" ]] || [[ "${{ github.event.head_commit.message }}" == *"chore(main): release"* ]]; then
-            echo "Bot triggered this workflow - skipping release process"
-            echo "is_bot=true" >> $GITHUB_OUTPUT
-            exit 0
-          else
-            echo "User triggered workflow - proceeding with release"
-            echo "is_bot=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Generate GitHub App Token
-        if: steps.bot_check.outputs.is_bot != 'true'
+      - name: Generate bot app token
         id: generate_token
         uses: actions/create-github-app-token@v2
         with:
@@ -38,13 +21,11 @@ jobs:
           private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
       - name: Setup project
-        if: steps.bot_check.outputs.is_bot != 'true'
         uses: ./.github/actions/setup-project
         with:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Release Please
-        if: steps.bot_check.outputs.is_bot != 'true'
         uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -52,27 +33,8 @@ jobs:
           manifest-file: .release-please-manifest.json
           token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Auto-merge release PR
-        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.prs_created
-        run: |
-          prs=$(printf '%s' "${{ steps.release.outputs.prs }}" | jq -c '.[]')
-          for pr in $prs; do
-            pr_number=$(echo "$pr" | jq -r '.number')
-            gh pr merge $pr_number --squash --admin
-          done
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-
       - name: Publish to NPM
-        if: steps.bot_check.outputs.is_bot != 'true' && steps.release.outputs.releases_created
+        if: ${{ steps.release.outputs.releases_created }}
         run: pnpm publish -r --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Workflow completed
-        run: |
-          if [[ "${{ steps.bot_check.outputs.is_bot }}" == "true" ]]; then
-            echo "✅ Workflow completed - Skipped release process (triggered by release bot)"
-          else
-            echo "✅ Workflow completed - Release process executed"
-          fi
