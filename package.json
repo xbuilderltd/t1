@@ -32,6 +32,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@pixpilot/dev-config": "catalog:dev",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@vitest/coverage-v8": "catalog:dev",
     "@vitest/ui": "catalog:dev",
     "add": "^2.0.6",
