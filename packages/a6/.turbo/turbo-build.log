@@ -1,0 +1,11 @@
+[2J[m[2;1H> @pixpilot/a6@3.0.1 build D:\Downloads\pixpilot\t1\packages\
+a6
+> pnpm run clean && rollup -c[6;1H]0;C:\Windows\system32\cmd.exe[?25h[25l
+> @pixpilot/a6@3.0.1 clean D:\Downloads\pixpilot\t1\packages\
+a6[K
+> rimraf dist[K[11;1H[?25h[1m[96m
+src/index.ts[22m[36m → [1m[96mdist, dist[22m[36m...
+[m[1m[93m(!) [plugin typescript] @rollup/plugin-typescript: outputToFi
+lesystem option is defaulting to true.[m[K
+[32mcreated [1m[92mdist, dist[22m[32m in [1m[92m723ms
+[m

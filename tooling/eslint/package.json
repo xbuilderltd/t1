@@ -7,7 +7,7 @@
     "./base": "./base.js"
   },
   "scripts": {
-    "clean": "git clean -xdf .cache .turbo node_modules",
+    "clean": "git clean -xdf .cache node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -22,7 +22,6 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
-    "eslint-plugin-turbo": "^2.5.4",
     "typescript-eslint": "^8.38.0"
   },
   "devDependencies": {

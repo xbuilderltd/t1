@@ -37,7 +37,9 @@
 **/.serverless/
 **/.storybook/
 **/.cypress/
-**/.turbo/
+# Nx
+**/.nx/cache
+**/.nx/workspace-data
 # Miscellaneous
 **/*.tgz
 **/*.bak

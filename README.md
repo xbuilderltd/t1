@@ -1,9 +1,9 @@
-# pnpm-turbo-monorepo-template
+# pnpm-nx-monorepo-template
 
 > ⚠️ **Opinionated Template:**
 > This monorepo template is designed for our internal standards and workflows. Feel free to use, adapt, and extend it for your own projects.
 
-A modern TypeScript monorepo template for npm packages, managed with pnpm and TurboRepo.
+A modern TypeScript monorepo template for npm packages, managed with pnpm and Nx.
 
 ## ✨ Features
 
@@ -12,6 +12,7 @@ A modern TypeScript monorepo template for npm packages, managed with pnpm and Tu
 - Linting and formatting with ESLint and Prettier
 - Build tooling with Rollup
 - Easy dependency management with pnpm
+- Fast orchestration and caching with Nx
 
 ## 🚀 Getting Started
 
