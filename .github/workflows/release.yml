@@ -43,15 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          # Check if this is a first release by looking for existing tags
-          EXISTING_TAGS=$(git tag -l | grep -E "@pixpilot/(n1|n2)@" || true)
-          if [ -z "$EXISTING_TAGS" ]; then
-            echo "First release detected, running with --first-release flag"
-            pnpm exec nx release --skip-publish --first-release
-          else
-            echo "Subsequent release, running without --first-release flag"
-            pnpm exec nx release --skip-publish
-          fi
+          pnpm exec nx release --skip-publish
 
       - name: Publish packages
         env:
