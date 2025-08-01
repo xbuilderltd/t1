@@ -12,24 +12,18 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+      actions: read
     steps:
-      - name: Generate GitHub App token
-        id: generate_token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ secrets.RELEASER_ID }}
-          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ steps.generate_token.outputs.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git user
         run: |
-          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
-          git config --global user.email "${{ steps.generate_token.outputs.user-id }}+${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Setup project
         uses: ./.github/actions/setup-project
