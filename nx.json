@@ -22,6 +22,9 @@
     },
     "clean": {
       "cache": false
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"]
     }
   },
   "generatorOptions": {
@@ -36,6 +39,9 @@
         "createRelease": "github",
         "file": false
       }
+    },
+    "version": {
+      "conventionalCommits": true
     }
   }
 }

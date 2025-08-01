@@ -36,15 +36,29 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
-      # - name: Build projects
-      #   run: pnpm exec nx run-many -t build
+      - name: Build projects
+        run: pnpm exec nx run-many -t build
 
       - name: Print Environment Info
         run: npx nx report
         shell: bash
 
+      - name: Check built packages
+        run: |
+          echo "Checking built packages..."
+          find packages -name "dist" -type d || echo "No dist directories found"
+          ls -la packages/*/dist/ || echo "No dist contents found"
+        shell: bash
+
+      - name: Publish packages (dry run)
+        run: npx nx release publish --dry-run --verbose
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
       - name: Publish packages
-        run: npx nx release publish
+        run: npx nx release publish --verbose
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
