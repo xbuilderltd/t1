@@ -20,15 +20,20 @@ jobs:
       - name: Check if triggered by release bot
         id: bot_check
         run: |
-          if [[ "${{ github.actor }}" == "pixpilot-pacakge-releaser[bot]" ]] || [[ "${{ github.event.head_commit.message }}" == *"chore(main): release"* ]]; then
-            echo "Bot triggered this workflow - proceeding with release"
-            echo "is_bot=true" >> $GITHUB_OUTPUT
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          echo "Actor: ${{ github.actor }}"
+          
+          # Skip if this is a release commit (already processed)
+          if [[ "${{ github.event.head_commit.message }}" == *"chore(main): release"* ]]; then
+            echo "Release commit detected - skipping to prevent loop"
+            echo "skip_workflow=true" >> $GITHUB_OUTPUT
           else
-            echo "User triggered workflow - only creating release PRs"
-            echo "is_bot=false" >> $GITHUB_OUTPUT
+            echo "Regular commit - proceeding with release process"
+            echo "skip_workflow=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Generate GitHub App Token
+        if: steps.bot_check.outputs.skip_workflow != 'true'
         id: generate_token
         uses: actions/create-github-app-token@v2
         with:
@@ -36,6 +41,7 @@ jobs:
           private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
       - name: Release Please
+        if: steps.bot_check.outputs.skip_workflow != 'true'
         uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -44,20 +50,22 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
 
       - name: Setup project
-        if: steps.release.outputs.releases_created
+        if: steps.bot_check.outputs.skip_workflow != 'true' && steps.release.outputs.releases_created
         uses: ./.github/actions/setup-project
         with:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to NPM
-        if: steps.release.outputs.releases_created
+        if: steps.bot_check.outputs.skip_workflow != 'true' && steps.release.outputs.releases_created
         run: pnpm publish -r --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Workflow completed
         run: |
-          if [[ "${{ steps.release.outputs.prs_created }}" == "true" ]]; then
+          if [[ "${{ steps.bot_check.outputs.skip_workflow }}" == "true" ]]; then
+            echo "✅ Workflow skipped - Release commit detected (preventing loop)"
+          elif [[ "${{ steps.release.outputs.prs_created }}" == "true" ]]; then
             echo "✅ Release PRs created - auto-merge workflow will handle merging"
           elif [[ "${{ steps.release.outputs.releases_created }}" == "true" ]]; then
             echo "✅ Packages released and published to NPM"
