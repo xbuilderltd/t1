@@ -4,27 +4,14 @@ on:
   push:
     branches: [main]
 
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   release:
-    # if: github.actor == 'pixpilot-pacakge-releaser[bot]'
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Generate GitHub App Token
-        id: generate_token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.RELEASER_ID }}
-          private_key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
       - name: Setup project
         uses: ./.github/actions/setup-project
@@ -37,15 +24,7 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-          token: ${{ steps.generate_token.outputs.token }}
-
-      # - name: Auto-merge release PR
-      #   if: ${{ steps.release.outputs.prs_created }}
-      #   run: |
-      #     pr_number=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-      #     gh pr merge $pr_number --squash --admin
-      #   env:
-      #     GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
