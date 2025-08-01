@@ -1,5 +1,50 @@
 # Changelog
 
+## [2.6.0](https://github.com/pixpilot/t1/compare/a6@v2.5.1...a6@v2.6.0) (2025-08-01)
+
+
+### Features
+
+* **a6:** add dependency on @pixpilot/a5 and update package.json ([109024f](https://github.com/pixpilot/t1/commit/109024f54e950ac7a32f26e43e7944ebfdfb0002))
+* **a6:** add initial package structure and configuration ([c43cc25](https://github.com/pixpilot/t1/commit/c43cc258e9bd30825baf6979e1d22ee2e1d45828))
+
+
+### Bug Fixes
+
+* **a5, a6:** correct version numbers in index.ts files ([ca6ad5a](https://github.com/pixpilot/t1/commit/ca6ad5af7bb465f80bf35d7372ec5bccf9151864))
+* **a6:** correct version number formatting in index.ts ([25b3de9](https://github.com/pixpilot/t1/commit/25b3de99e12b674c1eeba3b2d8a8987e6473575d))
+* **a6:** correct version number from '3ssswaw' to '3sssswaw' ([5d5dd97](https://github.com/pixpilot/t1/commit/5d5dd97ac6e6da21028a58884c6b66c568b0a9c7))
+* **a6:** correct version number from '3sswaw' to '3ssswaw' ([4d5fabf](https://github.com/pixpilot/t1/commit/4d5fabf6cf117e89aaea6bf9808b94081efae82a))
+* **a6:** correct version number to '3ss' ([b2684e9](https://github.com/pixpilot/t1/commit/b2684e9869c3b9424939ab354b02de9c362ce4fa))
+* **a6:** correct version string format in index.ts ([a766f6e](https://github.com/pixpilot/t1/commit/a766f6ef1f40db9930b248771d2b0a49b297d06d))
+* **a6:** correct version string formatting in index.ts ([d21637b](https://github.com/pixpilot/t1/commit/d21637b88e81f5deefdd320c741a0799a39a2cb0))
+* **a6:** correct version string formatting in index.ts ([f42f4b6](https://github.com/pixpilot/t1/commit/f42f4b623ba72cfbb846ccd92256226ec527094c))
+* **a6:** correct version string in index.ts ([2f52600](https://github.com/pixpilot/t1/commit/2f526005af44e1ea54819280d1e8de0a8b308c5a))
+* **a6:** correct version string in index.ts ([f506da1](https://github.com/pixpilot/t1/commit/f506da1b885cd424447c4ba224486bf4232b9df0))
+* **a6:** correct version string in index.ts ([85854ef](https://github.com/pixpilot/t1/commit/85854ef48018c92a1904c9fe6532817de1d91f8f))
+* **a6:** correct version string in index.ts ([5e0f253](https://github.com/pixpilot/t1/commit/5e0f2533c970577935d42276f8dea16ed632faa7))
+* **a6:** update version number to '3ssw' ([47ae856](https://github.com/pixpilot/t1/commit/47ae856e6987880923491d07340a4467fb6a0ae7))
+* **a6:** update version number to 3 ([547eda7](https://github.com/pixpilot/t1/commit/547eda7ee2ea5a6bfe555a89ec848401111f9a89))
+* add GitHub Actions CI workflow for pnpm-based TypeScript project ([97eda6a](https://github.com/pixpilot/t1/commit/97eda6ac9c79ca8fd30331d95a07dfe74be62e4b))
+* **ci:** comment out condition for release job to allow all actors ([6bdb81f](https://github.com/pixpilot/t1/commit/6bdb81ffa59effe52e9d7af6e2eb0ae536994c80))
+* **ci:** update condition for release job to exclude specific actor ([7c87ab1](https://github.com/pixpilot/t1/commit/7c87ab1acbb42d1e63c7c2fbf8cc3a2ecf5268f4))
+* correct version string in index.ts ([abef7cb](https://github.com/pixpilot/t1/commit/abef7cbf82ad0f8d97c2e66d9158ccb46dd399d8))
+* correct version string in index.ts ([bd03909](https://github.com/pixpilot/t1/commit/bd03909cc3f299c60415a26d17209d6624eed2cf))
+* **release-please:** correct action reference to googleapis/release-please-action@v4 ([953043c](https://github.com/pixpilot/t1/commit/953043cace4c248a489876410ca36dad392cad8a))
+* **release:** add auto-merge step for release PRs ([e07ef1f](https://github.com/pixpilot/t1/commit/e07ef1f0f4ce52451fcc6042ba0d9230fb971e26))
+* update auto-merge step in release workflow ([4c28c47](https://github.com/pixpilot/t1/commit/4c28c477f78ef7627995ac83c2d33d5ea6dbc7b1))
+* update release workflow conditions ([460249d](https://github.com/pixpilot/t1/commit/460249d4008f718762c615f59d206ebc0572a24f))
+* update release workflow to check for bot triggers ([713b8c1](https://github.com/pixpilot/t1/commit/713b8c13883345eeaa9609e80dca84e3e5edca2e))
+* update release workflow to use GitHub App Token ([e6d2f0b](https://github.com/pixpilot/t1/commit/e6d2f0bfce7cda10a0e43a047c3da3dd56ee2a3f))
+* update version to 1.0.6 ([69ef6b8](https://github.com/pixpilot/t1/commit/69ef6b8179179821b800dc72e87720ee81b7b94d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @pixpilot/a5 bumped to 2.1.10
+
 ## [2.5.1](https://github.com/pixpilot/t1/compare/a6@v2.5.0...a6@v2.5.1) (2025-08-01)
 
 
