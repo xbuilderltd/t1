@@ -1,6 +1,6 @@
 ---
 '@pixpilot/cs2': major
-'@pixpilot/cs2': minor
+'@pixpilot/cs1': minor
 ---
 
 ss
