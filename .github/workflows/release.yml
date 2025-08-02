@@ -58,7 +58,7 @@ jobs:
         run: |
           git add .changeset/*.md || true
           git commit -m "chore(changeset): autogenerate changeset" || true
-          git push --force origin main || true
+          git push --tags ${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main || true
 
   publish:
     needs: build
@@ -104,4 +104,5 @@ jobs:
         with:
           commit: 'chore(release): version packages'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }} # Use App token instead of default token
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
