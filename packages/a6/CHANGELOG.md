@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [`ab0f8c0`](https://github.com/pixpilot/t1/commit/ab0f8c092e64fa0ac84c658cf5ead82274375bd6) - a2
+
 ## 1.0.0
 
 ### Major Changes
