@@ -36,9 +36,9 @@ jobs:
         run: node .changeset/changesets-autogenerate.mjs
       - name: Commit changeset
         run: |
-          git add .changeset/*.md
-          git commit -m "chore(changeset): autogenerate changeset"
-          git push origin main
+          git add .changeset/*.md || true
+          git commit -m "chore(changeset): autogenerate changeset" || true
+          git push origin main || true
   publish:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
