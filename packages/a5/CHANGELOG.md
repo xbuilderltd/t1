@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.4
+
+### Patch Changes
+
+- fix: fix version string in index.ts
+
 ## 4.1.3
 
 ### Patch Changes
