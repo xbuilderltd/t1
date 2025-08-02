@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- [`f07e11d`](https://github.com/pixpilot/t1/commit/f07e11d1988171cb271115d39caac753943aa062) - sd
+
 ## 0.0.5
 
 ### Patch Changes
