@@ -39,14 +39,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           build: 'false'
 
-      # - name: Set Git user name and email
-      #   run: |
-      #     git config --local user.email "github-actions@github.com"
-      #     git config --local user.name "GitHub Actions"
-
-      # - name: Generate changeset from commit message
-      #   run: node .changeset/changesets-autogenerate.mjs
-
       - name: Changes
         run: node changes.js
         env:
