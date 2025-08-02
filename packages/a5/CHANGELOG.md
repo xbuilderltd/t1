@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- [`a71b8c7`](https://github.com/pixpilot/t1/commit/a71b8c74a7bb5f54a28d98ec4ce11a3369da03e4) - foo
+
+### Minor Changes
+
+- [`a71b8c7`](https://github.com/pixpilot/t1/commit/a71b8c74a7bb5f54a28d98ec4ce11a3369da03e4) - sd
+
+### Patch Changes
+
+- [`56a87f1`](https://github.com/pixpilot/t1/commit/56a87f117e49dd4fdcaaf737b00a86503e06fc05) - test changeset creation
+
 ## 3.0.0
 
 ### Major Changes
