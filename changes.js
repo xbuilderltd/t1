@@ -2,12 +2,7 @@ const simpleGit = require('simple-git');
 const { getPackages } = require('@manypkg/get-packages');
 const path = require('path');
 
-async function getChangesSinceLastCommit(options = {}) {
-  const {
-    branches = ['main'], // Default to main branch
-    compareType = 'HEAD~1', // 'HEAD~1', 'branch', or 'merge-base'
-  } = options;
-
+async function getChangesSinceLastCommit(branches = ['main']) {
   const git = simpleGit();
   const { packages } = await getPackages(process.cwd());
 
@@ -27,29 +22,14 @@ async function getChangesSinceLastCommit(options = {}) {
     for (const branch of branches) {
       let baseSha;
 
-      if (compareType === 'HEAD~1') {
-        baseSha = 'HEAD~1';
-      } else if (compareType === 'branch') {
-        // Compare against the tip of the specified branch
-        try {
-          baseSha = `origin/${branch}`;
-          // Check if remote branch exists
-          await git.raw(['rev-parse', '--verify', baseSha]);
-        } catch (error) {
-          console.log(`Branch origin/${branch} not found, trying ${branch}`);
-          baseSha = branch;
-        }
-      } else if (compareType === 'merge-base') {
-        // Find the merge base between current branch and target branch
-        try {
-          const mergeBase = await git.raw(['merge-base', 'HEAD', `origin/${branch}`]);
-          baseSha = mergeBase.trim();
-        } catch (error) {
-          console.log(
-            `Could not find merge-base with origin/${branch}, falling back to HEAD~1`,
-          );
-          baseSha = 'HEAD~1';
-        }
+      try {
+        // Try origin/branch first
+        baseSha = `origin/${branch}`;
+        await git.raw(['rev-parse', '--verify', baseSha]);
+      } catch (error) {
+        // Fallback to local branch
+        console.log(`Branch origin/${branch} not found, trying ${branch}`);
+        baseSha = branch;
       }
 
       console.log(`Comparing ${baseSha} to HEAD for branch ${branch}`);
@@ -99,23 +79,12 @@ async function getChangesSinceLastCommit(options = {}) {
 
 // Usage examples:
 
-// Compare against main branch (default)
-// getChangesSinceLastCommit().then(result => {
-//   console.log('Changes:', JSON.stringify(result, null, 2));
-// });
+// Single branch (default main)
+getChangesSinceLastCommit().then((result) => {
+  console.log('Changes:', JSON.stringify(result, null, 2));
+});
 
-// Compare against multiple branches
-// getChangesSinceLastCommit({
-//   branches: ['main', 'next'],
-//   compareType: 'branch'
-// }).then(result => {
-//   console.log('Changes:', JSON.stringify(result, null, 2));
-// });
-
-// Compare using merge-base (recommended for feature branches)
-getChangesSinceLastCommit({
-  branches: ['main', 'next'],
-  compareType: 'merge-base',
-}).then((result) => {
+// Multiple branches
+getChangesSinceLastCommit(['main', 'next']).then((result) => {
   console.log('Changes:', JSON.stringify(result, null, 2));
 });
