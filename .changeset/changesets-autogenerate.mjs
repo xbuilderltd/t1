@@ -27,7 +27,7 @@ let changesetCreated = false;
 
 for (const commitMessage of recentCommits) {
   console.log(`Checking: ${commitMessage}`);
-  
+
   // Identify type, package, and description
   let packageName = null;
   let changeType = null;
@@ -39,7 +39,7 @@ for (const commitMessage of recentCommits) {
   } else if (commitPatterns.minor.test(commitMessage)) {
     const scope = commitMessage.match(commitPatterns.minor)?.[1];
     description = commitMessage.match(commitPatterns.minor)?.[2];
-    
+
     // First try direct scope mapping
     if (validScopes[scope]) {
       packageName = validScopes[scope];
@@ -55,7 +55,7 @@ for (const commitMessage of recentCommits) {
   } else if (commitPatterns.patch.test(commitMessage)) {
     const scope = commitMessage.match(commitPatterns.patch)?.[1];
     description = commitMessage.match(commitPatterns.patch)?.[2];
-    
+
     // First try direct scope mapping
     if (validScopes[scope]) {
       packageName = validScopes[scope];
@@ -75,12 +75,12 @@ for (const commitMessage of recentCommits) {
     const existingChangesets = fs.readdirSync('.changeset')
       .filter(file => file.endsWith('.md') && file !== 'README.md')
       .map(file => fs.readFileSync(`.changeset/${file}`, 'utf8'));
-    
-    const isDuplicate = existingChangesets.some(content => 
-      content.includes(`"${packageName}": ${changeType}`) && 
+
+    const isDuplicate = existingChangesets.some(content =>
+      content.includes(`"${packageName}": ${changeType}`) &&
       content.includes(description)
     );
-    
+
     if (isDuplicate) {
       console.log(`⚠️ Changeset for ${packageName} with similar content already exists, skipping.`);
     } else {
