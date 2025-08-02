@@ -1,100 +1,34 @@
-name: Deployment Workflow
+# This workflow uses Changesets to automate versioning and publishing
+name: Release
+
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-jobs:
-  build:
-    name: Build Packages
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-      pull-requests: write
-      actions: write
-    steps:
-      - name: Generate bot app token
-        id: generate_token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ secrets.RELEASER_ID }}
-          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ steps.generate_token.outputs.token }}
 
-      - name: Configure Git user
-        run: |
-          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
-          git config --global user.email "${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
-
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: 'pnpm'
 
-      - name: Setup project
-        uses: ./.github/actions/setup-project
+      - name: Install pnpm
+        run: npm install -g pnpm@10.11.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create Release Pull Request or Publish
+        uses: changesets/action@v1
         with:
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Set Git user name and email
-        run: |
-          git config --local user.email "github-actions@github.com"
-          git config --local user.name "GitHub Actions"
-
-      - name: Generate changeset from commit message
-        run: node .changeset/changesets-autogenerate.mjs
-
-      - name: Commit changeset
-        run: |
-          git add .changeset/*.md || true
-          git commit -m "chore(changeset): autogenerate changeset" || true
-          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main || true
-
-  publish:
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-    steps:
-      - name: Generate bot app token
-        id: generate_token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ secrets.RELEASER_ID }}
-          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ steps.generate_token.outputs.token }}
-
-      - name: Configure Git user
-        run: |
-          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
-          git config --global user.email "${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
-
-      - name: Setup project
-        uses: ./.github/actions/setup-project
-        with:
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Pull latest changes
-        run: |
-          git pull origin main
-
-      - name: Publish to npm
-        id: changesets
-        uses: changesets/action@v1.4.1
-        with:
-          commit: 'chore(release): version packages'
+          publish: pnpm run changeset publish
         env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }} # Use App token instead of default token
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
