@@ -66,13 +66,7 @@ getChangesSinceLastCommit().then((changes) => {
           commit.message,
         );
 
-        if (!scope || packageName.includes(scope)) {
-          createChangesetFile(packageName, changeType, description);
-        } else {
-          console.log(
-            `⚠️ Commit scope '${scope}' does not match package name '${packageName}'.`,
-          );
-        }
+        createChangesetFile(packageName, changeType, description);
       });
     }
   });
