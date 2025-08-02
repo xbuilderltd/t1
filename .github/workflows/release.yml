@@ -45,11 +45,15 @@ jobs:
       # - name: Generate changeset from commit message
       #   run: node .changeset/changesets-autogenerate.mjs
 
-      - name: Commit changeset
+      - name: Check and commit any new changesets
         run: |
-          git add .changeset/*.md || true
-          git commit -m "chore(changeset): autogenerate changeset" || true
-          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main || true
+          if [ -n "$(git status --porcelain .changeset/*.md 2>/dev/null)" ]; then
+            git add .changeset/*.md
+            git commit -m "chore(changeset): autogenerate changeset"
+            git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
+          else
+            echo "No new changesets to commit"
+          fi
 
   publish:
     needs: build
@@ -85,11 +89,26 @@ jobs:
         run: |
           git pull origin main
 
+      - name: Check for changesets
+        id: check_changesets
+        run: |
+          if [ -n "$(find .changeset -name '*.md' -not -name 'README.md' | head -1)" ]; then
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Version packages
+        if: steps.check_changesets.outputs.has_changesets == 'true'
+        run: |
+          pnpm changeset version
+          git add .
+          git commit -m "chore(release): version packages" || true
+          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
+
       - name: Publish to npm
-        id: changesets
-        uses: changesets/action@v1.4.1
-        with:
-          commit: 'chore(release): version packages'
+        if: steps.check_changesets.outputs.has_changesets == 'true'
+        run: |
+          pnpm changeset publish
         env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }} # Use App token instead of default token
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
