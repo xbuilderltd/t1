@@ -37,6 +37,7 @@ jobs:
         uses: ./.github/actions/setup-project
         with:
           registry-url: 'https://registry.npmjs.org'
+          build: 'false'
 
       # - name: Set Git user name and email
       #   run: |
