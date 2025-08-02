@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [`a71b8c7`](https://github.com/pixpilot/t1/commit/a71b8c74a7bb5f54a28d98ec4ce11a3369da03e4) - sd
+
+### Patch Changes
+
+- Updated dependencies [[`56a87f1`](https://github.com/pixpilot/t1/commit/56a87f117e49dd4fdcaaf737b00a86503e06fc05), [`a71b8c7`](https://github.com/pixpilot/t1/commit/a71b8c74a7bb5f54a28d98ec4ce11a3369da03e4), [`a71b8c7`](https://github.com/pixpilot/t1/commit/a71b8c74a7bb5f54a28d98ec4ce11a3369da03e4)]:
+  - @pixpilot/cs1@4.0.0
+
 ## 2.0.0
 
 ### Major Changes
