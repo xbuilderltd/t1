@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.6
+
+### Patch Changes
+
+- fix: comment out npm publish step in release workflow
+
 ## 4.1.5
 
 ### Patch Changes
