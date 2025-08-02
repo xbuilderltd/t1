@@ -6,7 +6,9 @@ async function getChangesSinceLastCommit() {
   const git = simpleGit();
   const { packages } = await getPackages(process.cwd());
 
-  // Compare against the previous commit since we're already on main
+  // Filter out private packages
+  const publicPackages = packages.filter((pkg) => !pkg.packageJson.private);
+
   const baseSha = 'HEAD~1';
 
   try {
@@ -15,6 +17,10 @@ async function getChangesSinceLastCommit() {
     const changedFiles = diff.split('\n').filter(Boolean);
 
     console.log('Changed files:', changedFiles); // Debug log
+    console.log(
+      'Public packages:',
+      publicPackages.map((p) => p.packageJson.name),
+    ); // Debug log
 
     // Get commits
     const log = await git.log({
@@ -25,7 +31,8 @@ async function getChangesSinceLastCommit() {
 
     const changes = {};
 
-    packages.forEach((pkg) => {
+    // Only process public packages
+    publicPackages.forEach((pkg) => {
       const pkgPath = path.relative(process.cwd(), pkg.dir);
       const pkgChangedFiles = changedFiles.filter(
         (file) => file.startsWith(pkgPath + '/') || file === `${pkgPath}/package.json`,
@@ -36,6 +43,7 @@ async function getChangesSinceLastCommit() {
           files: pkgChangedFiles,
           commits: log.all,
           version: pkg.packageJson.version,
+          private: pkg.packageJson.private || false, // For clarity
         };
       }
     });
@@ -48,5 +56,5 @@ async function getChangesSinceLastCommit() {
 }
 
 getChangesSinceLastCommit().then((changes) => {
-  console.log('Changes:', JSON.stringify(changes, null, 2));
+  console.log('Changes (public packages only):', JSON.stringify(changes, null, 2));
 });
