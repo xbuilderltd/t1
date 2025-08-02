@@ -4,8 +4,11 @@ import fs from 'fs';
 // Get the most recent commit message
 const commitMessage = execSync('git log -1 --format=%s').toString().trim();
 
-// Define valid scopes
-const validScopes = ['a5', 'a6'];
+// Define valid scopes and their corresponding package names
+const validScopes = {
+  'a5': '@pixpilot/cs1',
+  'a6': '@pixpilot/cs2'
+};
 
 // Define regex patterns
 const commitPatterns = {
@@ -24,15 +27,15 @@ if (commitPatterns.major.test(commitMessage)) {
   description = commitMessage.match(commitPatterns.major)?.[1];
 } else if (commitPatterns.minor.test(commitMessage)) {
   const scope = commitMessage.match(commitPatterns.minor)?.[1];
-  if (validScopes.includes(scope)) {
-    packageName = scope;
+  if (validScopes[scope]) {
+    packageName = validScopes[scope];
     changeType = 'minor';
     description = commitMessage.match(commitPatterns.minor)?.[2];
   }
 } else if (commitPatterns.patch.test(commitMessage)) {
   const scope = commitMessage.match(commitPatterns.patch)?.[1];
-  if (validScopes.includes(scope)) {
-    packageName = scope;
+  if (validScopes[scope]) {
+    packageName = validScopes[scope];
     changeType = 'patch';
     description = commitMessage.match(commitPatterns.patch)?.[2];
   }
@@ -40,9 +43,9 @@ if (commitPatterns.major.test(commitMessage)) {
 
 if (packageName && changeType && description) {
   const changeset = `---\n"${packageName}":\n  "type": "${changeType}"\n---\n\n${description}\n`;
-  const filename = `${Date.now()}-${packageName}.md`;
+  const filename = `${Date.now()}-${packageName.replace(/[@\/]/g, '-')}.md`;
   fs.writeFileSync(`.changeset/${filename}`, changeset);
   console.log(`Created changeset for ${packageName}: ${filename}`);
 } else {
-  console.log('⚠️ No valid package scope found in commit message. Valid scopes are:', validScopes.join(', '));
+  console.log('⚠️ No valid package scope found in commit message. Valid scopes are:', Object.keys(validScopes).join(', '));
 }
