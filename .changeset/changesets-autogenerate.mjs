@@ -27,17 +27,35 @@ if (commitPatterns.major.test(commitMessage)) {
   description = commitMessage.match(commitPatterns.major)?.[1];
 } else if (commitPatterns.minor.test(commitMessage)) {
   const scope = commitMessage.match(commitPatterns.minor)?.[1];
+  description = commitMessage.match(commitPatterns.minor)?.[2];
+  
+  // First try direct scope mapping
   if (validScopes[scope]) {
     packageName = validScopes[scope];
     changeType = 'minor';
-    description = commitMessage.match(commitPatterns.minor)?.[2];
+  } else {
+    // Try to extract package from description
+    const packageMatch = description.match(/package\s+(a[56])/i);
+    if (packageMatch && validScopes[packageMatch[1]]) {
+      packageName = validScopes[packageMatch[1]];
+      changeType = 'minor';
+    }
   }
 } else if (commitPatterns.patch.test(commitMessage)) {
   const scope = commitMessage.match(commitPatterns.patch)?.[1];
+  description = commitMessage.match(commitPatterns.patch)?.[2];
+  
+  // First try direct scope mapping
   if (validScopes[scope]) {
     packageName = validScopes[scope];
     changeType = 'patch';
-    description = commitMessage.match(commitPatterns.patch)?.[2];
+  } else {
+    // Try to extract package from description
+    const packageMatch = description.match(/package\s+(a[56])/i);
+    if (packageMatch && validScopes[packageMatch[1]]) {
+      packageName = validScopes[packageMatch[1]];
+      changeType = 'patch';
+    }
   }
 }
 
