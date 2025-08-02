@@ -69,7 +69,7 @@ jobs:
           pnpm changeset version
           git add .
           git commit -m "chore(release): version packages [skip ci]" || true
-          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:${GITHUB_REF_NAME}
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
