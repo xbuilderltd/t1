@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.2
+
+### Patch Changes
+
+- [`58bbdf4`](https://github.com/pixpilot/t1/commit/58bbdf4370f2be92236f7da377d21993e469492f) - correct version string format in package a6
+
+- Updated dependencies [[`58bbdf4`](https://github.com/pixpilot/t1/commit/58bbdf4370f2be92236f7da377d21993e469492f)]:
+  - @pixpilot/cs1@0.0.1
+
 ## 0.0.1
 
 ### Patch Changes
