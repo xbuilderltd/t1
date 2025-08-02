@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.7
+
+### Patch Changes
+
+- [`ad0146d`](https://github.com/pixpilot/t1/commit/ad0146d50859fd7fc715a01b7289c7fd3ec006b9) Thanks [@pixpilot-pacakge-releaser[bot]](https://github.com/pixpilot-pacakge-releaser%5Bbot%5D)! - chore(release): version packages
+
 ## 4.0.6
 
 ### Patch Changes
