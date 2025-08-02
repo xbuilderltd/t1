@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.16
+
+### Patch Changes
+
+- [`1cdb2e8`](https://github.com/pixpilot/t1/commit/1cdb2e814e2acca39077d45b04654ab691beae2a) Thanks [@pixpilot-pacakge-releaser[bot]](https://github.com/pixpilot-pacakge-releaser%5Bbot%5D)! - Merge branch 'next' of https://github.com/pixpilot/t1 into next
+
+- Updated dependencies []:
+  - @pixpilot/cs1@4.1.10
+
 ## 4.0.16-rc.0
 
 ### Patch Changes
