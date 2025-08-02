@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.6
+
+### Patch Changes
+
+- [`ed29889`](https://github.com/pixpilot/t1/commit/ed2988954533a50dfe44adda21e215f251fbe614) Thanks [@pixpilot-pacakge-releaser[bot]](https://github.com/pixpilot-pacakge-releaser%5Bbot%5D)! - Merge branch 'main' of https://github.com/pixpilot/t1
+
 ## 4.0.5
 
 ### Patch Changes
