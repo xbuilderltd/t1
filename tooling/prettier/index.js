@@ -1,7 +1,7 @@
 import prettierConfig from '@pixpilot/dev-config/prettier';
 
 /** @typedef {import("prettier").Config} PrettierConfig */
-
+//
 /** @type { PrettierConfig } */
 const config = {
   ...prettierConfig,

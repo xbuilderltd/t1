@@ -1,7 +1,7 @@
 import eslintConfig from '@pixpilot/dev-config/eslint';
 import jestConfig from '@pixpilot/dev-config/eslint-jest';
 import turboPlugin from 'eslint-plugin-turbo';
-
+//
 const config = /** @type {any} */ ([
   {
     ignores: [
