@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- [`0d71410`](https://github.com/pixpilot/t1/commit/0d714107c301b5b7921d149f1d369b732120fb1b) - test1
+
+### Patch Changes
+
+- [`a3a7c4e`](https://github.com/pixpilot/t1/commit/a3a7c4e12d3a9c7110a4879b4570cfd36a18343d) - add new functionality to package a5
+
 ## 0.0.1
 
 ### Patch Changes
