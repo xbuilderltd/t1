@@ -64,62 +64,62 @@ jobs:
       #       echo "No new changesets to commit"
       #     fi
 
-  # publish:
-  #   needs: build
-  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: write
-  #     packages: write
-  #   steps:
-  #     - name: Generate bot app token
-  #       id: generate_token
-  #       uses: actions/create-github-app-token@v2
-  #       with:
-  #         app-id: ${{ secrets.RELEASER_ID }}
-  #         private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Generate bot app token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
 
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-  #       with:
-  #         token: ${{ steps.generate_token.outputs.token }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
 
-  #     - name: Configure Git user
-  #       run: |
-  #         git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
-  #         git config --global user.email "${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
+      - name: Configure Git user
+        run: |
+          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
+          git config --global user.email "${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
 
-  #     - name: Setup project
-  #       uses: ./.github/actions/setup-project
-  #       with:
-  #         registry-url: 'https://registry.npmjs.org'
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          registry-url: 'https://registry.npmjs.org'
 
-  #     - name: Pull latest changes
-  #       run: |
-  #         git pull origin main
+      - name: Pull latest changes
+        run: |
+          git pull origin main
 
-  #     - name: Check for changesets
-  #       id: check_changesets
-  #       run: |
-  #         if [ -n "$(find .changeset -name '*.md' -not -name 'README.md' | head -1)" ]; then
-  #           echo "has_changesets=true" >> $GITHUB_OUTPUT
-  #         else
-  #           echo "has_changesets=false" >> $GITHUB_OUTPUT
-  #         fi
+      - name: Check for changesets
+        id: check_changesets
+        run: |
+          if [ -n "$(find .changeset -name '*.md' -not -name 'README.md' | head -1)" ]; then
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+          fi
 
-  #     - name: Version packages
-  #       if: steps.check_changesets.outputs.has_changesets == 'true'
-  #       run: |
-  #         pnpm changeset version
-  #         git add .
-  #         git commit -m "chore(release): version packages" || true
-  #         git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
-  #       env:
-  #         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      - name: Version packages
+        if: steps.check_changesets.outputs.has_changesets == 'true'
+        run: |
+          pnpm changeset version
+          git add .
+          git commit -m "chore(release): version packages" || true
+          git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
-  #     - name: Publish to npm
-  #       if: steps.check_changesets.outputs.has_changesets == 'true'
-  #       run: |
-  #         pnpm changeset publish
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        if: steps.check_changesets.outputs.has_changesets == 'true'
+        run: |
+          pnpm changeset publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
