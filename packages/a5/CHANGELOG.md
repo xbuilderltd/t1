@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.11
+
+### Patch Changes
+
+- fix: Update index.ts (#86)
+
 ## 4.1.10
 
 ### Patch Changes
