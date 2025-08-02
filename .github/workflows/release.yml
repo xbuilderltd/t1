@@ -14,10 +14,21 @@ jobs:
       pull-requests: write
       actions: write
     steps:
+      - name: Generate bot app token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ steps.generate_token.outputs.token }}
+      - name: Configure Git user
+        run: |
+          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
+          git config --global user.email "${{ steps.generate_token.outputs.user-id }}+${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -34,11 +45,14 @@ jobs:
           git config --local user.name "GitHub Actions"
       - name: Generate changeset from commit message
         run: node .changeset/changesets-autogenerate.mjs
-      - name: Commit changeset
-        run: |
-          git add .changeset/*.md || true
-          git commit -m "chore(changeset): autogenerate changeset" || true
-          git push origin main || true
+      - name: Create Pull Request for changeset
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'chore(changeset): autogenerate changeset'
+          title: 'chore(changeset): autogenerate changeset'
+          body: 'Automated changeset PR'
+          branch: changeset-autogen/${{ github.run_id }}
+          add-paths: .changeset/*.md
   publish:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -47,8 +61,20 @@ jobs:
       contents: write
       packages: write
     steps:
+      - name: Generate bot app token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASER_ID }}
+          private-key: ${{ secrets.RELEASER_PRIVATE_KEY }}
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+      - name: Configure Git user
+        run: |
+          git config --global user.name "${{ steps.generate_token.outputs.app-slug }}[bot]"
+          git config --global user.email "${{ steps.generate_token.outputs.user-id }}+${{ steps.generate_token.outputs.app-slug }}[bot]@users.noreply.github.com"
       - name: Setup Node.js
         uses: actions/setup-node@v4
       - name: Enable Corepack
