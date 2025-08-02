@@ -11,6 +11,7 @@
     "@acme/vitest-config": "0.1.0"
   },
   "changesets": [
-    "auto-1754160344023"
+    "auto-1754160344023",
+    "auto-1754160906240"
   ]
 }
