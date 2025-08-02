@@ -68,14 +68,14 @@ jobs:
         run: |
           pnpm changeset version
           git add .
-          git commit -m "version packages" || true
+          git commit -m "chore(release): version packages" || true
           git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
-      # - name: Publish to npm
-      #   if: steps.check_changesets.outputs.has_changesets == 'true'
-      #   run: |
-      #     pnpm changeset publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        if: steps.check_changesets.outputs.has_changesets == 'true'
+        run: |
+          pnpm changeset publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
