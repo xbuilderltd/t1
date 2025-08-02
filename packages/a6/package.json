@@ -1,6 +1,6 @@
 {
-  "name": "@pixpilot/a6",
-  "version": "2.6.0",
+  "name": "@pixpilot/cs2",
+  "version": "0.0.0",
   "keywords": [],
   "license": "MIT",
   "author": "pixpilot",
@@ -35,7 +35,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@pixpilot/a5": "workspace:*"
+    "@pixpilot/cs1": "workspace:*"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
