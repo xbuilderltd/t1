@@ -58,7 +58,7 @@ jobs:
         run: |
           git add .changeset/*.md || true
           git commit -m "chore(changeset): autogenerate changeset" || true
-          git push origin main || true
+          git push --force origin main || true
 
   publish:
     needs: build
