@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.1
+
+### Patch Changes
+
+- release
+
 ## 4.1.0
 
 ### Minor Changes
