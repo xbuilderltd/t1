@@ -61,7 +61,12 @@ jobs:
 
       - name: Exit Changeset pre-release mode
         if: github.ref_name == 'main'
-        run: pnpm changeset pre exit
+        run: |
+          if [ -f .changeset/pre.json ]; then
+            pnpm changeset pre exit
+          else
+            echo "Not in pre-release mode, skipping exit."
+          fi
 
       - name: Version packages
         if: steps.check_changesets.outputs.has_changesets == 'true'
