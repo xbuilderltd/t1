@@ -47,6 +47,10 @@ jobs:
 
       - name: Changes
         run: node changes.js
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_BEFORE: ${{ github.event.before }}
+          GITHUB_AFTER: ${{ github.event.after }}
 
       # - name: Check and commit any new changesets
       #   run: |
