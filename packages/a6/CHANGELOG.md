@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.12
+
+### Patch Changes
+
+- Merge branch 'main' of https://github.com/pixpilot/t1
+
 ## 4.0.11
 
 ### Patch Changes
