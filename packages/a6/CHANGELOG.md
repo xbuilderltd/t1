@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.16-rc.0
+
+### Patch Changes
+
+- Merge branch 'next' of https://github.com/pixpilot/t1 into next
+
 ## 4.0.15
 
 ### Patch Changes
