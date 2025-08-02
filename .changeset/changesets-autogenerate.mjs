@@ -42,7 +42,7 @@ if (commitPatterns.major.test(commitMessage)) {
 }
 
 if (packageName && changeType && description) {
-  const changeset = `---\n"${packageName}":\n  "type": "${changeType}"\n---\n\n${description}\n`;
+  const changeset = `---\n"${packageName}": ${changeType}\n---\n\n${description}\n`;
   const filename = `${Date.now()}-${packageName.replace(/[@\/]/g, '-')}.md`;
   fs.writeFileSync(`.changeset/${filename}`, changeset);
   console.log(`Created changeset for ${packageName}: ${filename}`);
