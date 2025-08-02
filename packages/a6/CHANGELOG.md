@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.3
+
+### Patch Changes
+
+- chore(release): version packages
+
+- Updated dependencies []:
+  - @pixpilot/cs1@4.1.3
+
 ## 4.0.2
 
 ### Patch Changes
