@@ -51,6 +51,9 @@ importers:
       '@changesets/cli':
         specifier: ^2.29.5
         version: 2.29.5
+      '@changesets/get-release-plan':
+        specifier: ^4.0.13
+        version: 4.0.13
       '@commitlint/cli':
         specifier: ^19.8.1
         version: 19.8.1(@types/node@24.1.0)(typescript@5.8.3)

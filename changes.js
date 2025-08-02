@@ -1,10 +1,7 @@
 import { getPackages } from '@manypkg/get-packages';
-import { getChangedPackagesSinceRef } from '@changesets/git';
+import getReleasePlan from '@changesets/get-release-plan';
 
 const allPackages = await getPackages(process.cwd());
-const changed = await getChangedPackagesSinceRef({
-  ref: 'origin/main',
-  packages: allPackages.packages,
-});
+const releasePlan = await getReleasePlan(process.cwd(), 'origin/main');
 
-console.log(changed); // list of packages with changes
+console.log(releasePlan.releases); // list of packages to be released
