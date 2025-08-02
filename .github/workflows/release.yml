@@ -55,6 +55,14 @@ jobs:
             echo "has_changesets=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Enter Changeset pre-release mode (rc)
+        if: github.ref_name == 'next'
+        run: pnpm changeset pre enter rc
+
+      - name: Exit Changeset pre-release mode
+        if: github.ref_name == 'main'
+        run: pnpm changeset pre exit
+
       - name: Version packages
         if: steps.check_changesets.outputs.has_changesets == 'true'
         run: |
