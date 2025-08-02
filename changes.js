@@ -1,6 +1,8 @@
 const simpleGit = require('simple-git');
 const { getPackages } = require('@manypkg/get-packages');
 const path = require('path');
+const { createChangesetFile } = require('./createChangesetFile');
+const { getChangeTypeAndDescription } = require('./getChangeTypeAndDescription');
 
 async function getChangesSinceLastCommit() {
   const git = simpleGit();
@@ -55,6 +57,37 @@ async function getChangesSinceLastCommit() {
   }
 }
 
+// Commit message patterns for change type detection
+const commitPatterns = {
+  major: /^BREAKING CHANGE: (.+)/,
+  minor: /^feat\(([^)]+)\): (.+)/,
+  patch: /^fix\(([^)]+)\): (.+)/,
+};
+
 getChangesSinceLastCommit().then((changes) => {
   console.log('Changes (public packages only):', JSON.stringify(changes, null, 2));
+  Object.entries(changes).forEach(([packageName, info]) => {
+    if (info.commits && info.commits.length > 0) {
+      const commit = info.commits[0];
+      const { changeType, scope, description } = getChangeTypeAndDescription(
+        commit.message,
+      );
+      // Map scope to package name if possible
+      const validScopes = ['core', 'react', 'web-component'];
+      if (!scope || validScopes.includes(scope)) {
+        // If scope matches part of packageName, allow changeset creation
+        if (!scope || packageName.includes(scope)) {
+          createChangesetFile(packageName, changeType, description);
+        } else {
+          console.log(
+            `⚠️ Commit scope '${scope}' does not match package name '${packageName}'.`,
+          );
+        }
+      } else {
+        console.log(
+          `⚠️ No valid package scope found in commit message. Valid scopes are: ${validScopes.join(', ')}`,
+        );
+      }
+    }
+  });
 });
