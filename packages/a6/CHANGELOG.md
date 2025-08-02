@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @pixpilot/cs1@4.1.7
+
 ## 4.0.12
 
 ### Patch Changes

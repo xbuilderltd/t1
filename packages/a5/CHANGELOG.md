@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.7
+
+### Patch Changes
+
+- version
+
 ## 4.1.6
 
 ### Patch Changes
