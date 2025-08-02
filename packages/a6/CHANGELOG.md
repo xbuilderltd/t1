@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`9e4593b`](https://github.com/pixpilot/t1/commit/9e4593b3dd8fe06d355dec5a1525e54ce4e2eae2)]:
+  - @pixpilot/cs1@2.0.0
+
 ## 0.0.3
 
 ### Patch Changes
