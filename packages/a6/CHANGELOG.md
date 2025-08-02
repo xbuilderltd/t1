@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- [`9a7299d`](https://github.com/pixpilot/t1/commit/9a7299d0540313f13bf156524a2ad95863c9175d) - ss
+
+### Patch Changes
+
+- Updated dependencies [[`9a7299d`](https://github.com/pixpilot/t1/commit/9a7299d0540313f13bf156524a2ad95863c9175d)]:
+  - @pixpilot/cs1@4.1.0
+
 ## 2.1.0
 
 ### Minor Changes

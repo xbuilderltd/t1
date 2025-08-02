@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0
+
+### Minor Changes
+
+- [`9a7299d`](https://github.com/pixpilot/t1/commit/9a7299d0540313f13bf156524a2ad95863c9175d) - ss
+
 ## 4.0.0
 
 ### Major Changes
