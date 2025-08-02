@@ -67,6 +67,9 @@ getChangesSinceLastCommit().then((changes) => {
         );
 
         createChangesetFile(packageName, changeType, description);
+        console.log(
+          `Created changeset for package '${packageName}' with change type '${changeType}' and description '${description}'`,
+        );
       });
     }
   });
