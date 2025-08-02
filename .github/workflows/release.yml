@@ -105,6 +105,8 @@ jobs:
           git add .
           git commit -m "chore(release): version packages" || true
           git push https://${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
       - name: Publish to npm
         if: steps.check_changesets.outputs.has_changesets == 'true'
