@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.5
+
+### Patch Changes
+
+- chore(release): version packages
+
 ## 4.0.4
 
 ### Patch Changes
