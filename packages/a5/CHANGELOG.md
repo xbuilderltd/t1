@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [`19e5159`](https://github.com/pixpilot/t1/commit/19e515978ca45cd7edddd6f2ccac706e5c810c0a) - bar
+
+- [`9e4593b`](https://github.com/pixpilot/t1/commit/9e4593b3dd8fe06d355dec5a1525e54ce4e2eae2) - foo
+
 ## 1.0.0
 
 ### Major Changes
