@@ -42,8 +42,8 @@ jobs:
       #     git config --local user.email "github-actions@github.com"
       #     git config --local user.name "GitHub Actions"
 
-      # - name: Generate changeset from commit message
-      #   run: node .changeset/changesets-autogenerate.mjs
+      - name: Generate changeset from commit message
+        run: node .changeset/changesets-autogenerate.mjs
 
       # - name: Check and commit any new changesets
       #   run: |
