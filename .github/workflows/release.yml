@@ -1,4 +1,4 @@
-name: Deployment Workflow
+name: 'Release Workflow'
 on:
   push:
     branches:
@@ -57,7 +57,12 @@ jobs:
 
       - name: Enter Changeset pre-release mode (rc)
         if: github.ref_name == 'next'
-        run: pnpm changeset pre enter rc
+        run: |
+          if [ ! -f .changeset/pre.json ]; then
+            pnpm changeset pre enter rc
+          else
+            echo "Already in pre-release mode, skipping enter."
+          fi
 
       - name: Exit Changeset pre-release mode
         if: github.ref_name == 'main'
